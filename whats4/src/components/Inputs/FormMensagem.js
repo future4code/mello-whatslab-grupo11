@@ -54,103 +54,103 @@ const TextoBold = styled.span`
 `;
 
 export class Input extends React.Component {
-         state = {
-           mensagens: [
-             {
-               usuario: "João",
-               mensagem: "Bom dia!",
-             },
-           ],
+  state = {
+    mensagens: [
+      {
+        usuario: "João",
+        mensagem: "Bom dia!",
+      },
+    ],
 
-           valorInputUsuario: "",
-           valorInputMensagem: "",
-         };
+    valorInputUsuario: "",
+    valorInputMensagem: "",
+  };
 
-         adicionaMensagem = () => {
-           const novaMensagem = {
-             usuario: this.state.valorInputUsuario,
-             mensagem: this.state.valorInputMensagem,
-           };
+  adicionaMensagem = () => {
+    const novaMensagem = {
+      usuario: this.state.valorInputUsuario,
+      mensagem: this.state.valorInputMensagem,
+    };
 
-           const novasMensagens = [...this.state.mensagens, novaMensagem];
+    const novasMensagens = [...this.state.mensagens, novaMensagem];
 
-           this.setState({
-             mensagens: novasMensagens,
-           });
-           this.setState({
-             valorInputMensagem: "",
-           });
-         };
+    this.setState({
+      mensagens: novasMensagens,
+    });
+    this.setState({
+      valorInputMensagem: "",
+    });
+  };
 
-         onChangeInputUsuario = (event) => {
-           this.setState({ valorInputUsuario: event.target.value });
-         };
+  onChangeInputUsuario = (event) => {
+    this.setState({ valorInputUsuario: event.target.value });
+  };
 
-         onChangeInputMensagem = (event) => {
-           this.setState({ valorInputMensagem: event.target.value });
-         };
+  onChangeInputMensagem = (event) => {
+    this.setState({ valorInputMensagem: event.target.value });
+  };
 
-         aoApertarEnter = (event) => {
-           if (event.key === "Enter") {
-             return this.adicionaMensagem();
-           }
-         };
+  aoApertarEnter = (event) => {
+    if (event.key === "Enter") {
+      return this.adicionaMensagem();
+    }
+  };
 
-         // APAGA
-         removeMensagem = mensagemParaRemover => {
-           const novaListaDeMensagens = this.state.mensagens.filter((dado) => {
-             return dado.usuario !== mensagemParaRemover;
-           });
+  // APAGA
+  removeMensagem = (mensagemParaRemover) => {
+    const novaListaDeMensagens = this.state.mensagens.filter((dado) => {
+      return dado.usuario !== mensagemParaRemover;
+    });
 
-           this.setState({
-             mensagens: novaListaDeMensagens,
-           });
-         };
+    this.setState({
+      mensagens: novaListaDeMensagens,
+    });
+  };
 
-         // CONFIRMAÇÃO
-         confirmacaoRemoveMensagem = () => {
-           let confirmacaoApagaMensagem = window.confirm(
-             "Você deseja apagar a mensagem?"
-           );
+  // CONFIRMAÇÃO
+  confirmacaoRemoveMensagem = () => {
+    let confirmacaoApagaMensagem = window.confirm(
+      "Você deseja apagar a mensagem?"
+    );
 
-           if (confirmacaoApagaMensagem === true) {
-              this.removeMensagem(this.mensagem);
-           }
-         };
+    if (confirmacaoApagaMensagem === true) {
+      this.removeMensagem(this.mensagem);
+    }
+  };
 
-         render() {
-           const listaDeMensagens = this.state.mensagens.map(dado => {
-             return (
-               <p>
-                 <TextoBold>{dado.usuario}:</TextoBold> {dado.mensagem}
-               </p>
-             );
-           });
+  render() {
+    const listaDeMensagens = this.state.mensagens.map((dado) => {
+      return (
+        <p>
+          <TextoBold>{dado.usuario}:</TextoBold> {dado.mensagem}
+        </p>
+      );
+    });
 
-           return (
-             <BoxPai>
-               <BoxMensagem>
-                 <DivMensagem>
-                   <InputUsuario
-                     value={this.state.valorInputUsuario}
-                     onChange={this.onChangeInputUsuario}
-                     placeholder={"Usuário"}
-                   />
-                   <InputMensagem
-                     value={this.state.valorInputMensagem}
-                     onChange={this.onChangeInputMensagem}
-                     placeholder={"Mensagem"}
-                     onKeyPress={this.aoApertarEnter}
-                   />
-                   <Botao onClick={this.adicionaMensagem}>Enviar</Botao>
-                 </DivMensagem>
-                 <ListaMensagem onClick={this.confirmacaoRemoveMensagem}>
-                   {listaDeMensagens}
-                 </ListaMensagem>
-               </BoxMensagem>
-             </BoxPai>
-           );
-         }
-       }
+    return (
+      <BoxPai>
+        <BoxMensagem>
+          <DivMensagem>
+            <InputUsuario
+              value={this.state.valorInputUsuario}
+              onChange={this.onChangeInputUsuario}
+              placeholder={"Usuário"}
+            />
+            <InputMensagem
+              value={this.state.valorInputMensagem}
+              onChange={this.onChangeInputMensagem}
+              placeholder={"Mensagem"}
+              onKeyPress={this.aoApertarEnter}
+            />
+            <Botao onClick={this.adicionaMensagem}>Enviar</Botao>
+          </DivMensagem>
+          <ListaMensagem onClick={this.confirmacaoRemoveMensagem}>
+            {listaDeMensagens}
+          </ListaMensagem>
+        </BoxMensagem>
+      </BoxPai>
+    );
+  }
+}
 
-export default Input
+export default Input;
