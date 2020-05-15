@@ -1,25 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const BoxPai = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+`
+
 const BoxMensagem = styled.div`
 display: flex;
 flex-direction: column-reverse;
 height: 100vh;
-width: 80vw;
+width: 45vw;
 border: 1px solid black;
 `
 const DivMensagem = styled.div`
 display:flex;
 justify-content: center;
 align-items: flex-end;
-color: blue;
 `
 
 const ListaMensagem = styled.div`
 display:flex;
 flex-direction: column;
 align-items: flex-start;
-color: blue;
+padding-left: 25px;
+padding-bottom: 25px;
+`
+
+const InputUsuario = styled.input`
+width:7vw;
+`
+
+const InputMensagem = styled.input`
+width: 34vw;
+`
+
+const Botao = styled.button`
+width: 4vw;
 `
 
 class Input extends React.Component {
@@ -67,22 +85,24 @@ class Input extends React.Component {
   });
   
   return (
-    <BoxMensagem>
-      <DivMensagem>
-        <input
-        value={this.state.valorInputUsuario}
-        onChange={this.onChangeInputUsuario}
-        placeholder={"Usuário"}
-        />
-        <input
-        value={this.state.valorInputMensagem}
-        onChange={this.onChangeInputMensagem}
-        placeholder={"Mensagem"}
-        />
-        <button onClick={this.adicionaMensagem}>Enviar</button>
-      </DivMensagem>
-        <ListaMensagem>{listaDeMensagens}</ListaMensagem>
-    </BoxMensagem>
+    <BoxPai>
+      <BoxMensagem>
+        <DivMensagem>
+          <InputUsuario
+          value={this.state.valorInputUsuario}
+          onChange={this.onChangeInputUsuario}
+          placeholder={"Usuário"}
+          />
+          <InputMensagem
+          value={this.state.valorInputMensagem}
+          onChange={this.onChangeInputMensagem}
+          placeholder={"Mensagem"}
+          />
+          <Botao onClick={this.adicionaMensagem}>Enviar</Botao>
+        </DivMensagem>
+          <ListaMensagem>{listaDeMensagens}</ListaMensagem>
+      </BoxMensagem>
+    </BoxPai>
     );
   }
 }
