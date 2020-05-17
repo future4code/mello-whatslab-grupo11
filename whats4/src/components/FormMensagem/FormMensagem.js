@@ -13,13 +13,14 @@ const BoxMensagem = styled.div`
   height: 100vh;
   width: 45vw;
   border: 1px solid black;
-  background-color: grey;
+  background-color: #e5ddd5;
 `;
 
 const DivMensagem = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: flex-end;
+  margin-bottom: 10px;
 `;
 
 const ListaMensagem = styled.div`
@@ -31,27 +32,44 @@ const ListaMensagem = styled.div`
 `;
 
 const InputUsuario = styled.input`
-  width: 7vw;
-  height: 4vh;
+  height: 5vh;
   border-radius: 10px;
+  border: none;
 `;
 
 const InputMensagem = styled.input`
-  width: 34vw;
-  height: 4vh;
-  border-radius: 10px;
-  margin: 2px;
+  min-width: 25vw;
+  height: 5vh;
+  border-radius: 6px;
+  border: none;
 `;
 
 const Botao = styled.button`
-  width: 4vw;
-  height: 4vh;
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 6vw;
+  height: 5.3vh;
   border-radius: 10px;
+  border: none;
 `;
 
 const TextoBold = styled.span`
   font-weight: bold;
 `;
+
+const MensagemRecebida = styled.div`
+  text-align: left;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 7.5vh;
+  padding: 10px;
+  min-width: 7vw;
+  margin-bottom: 2vh;
+`
 
 export class Input extends React.Component {
   state = {
@@ -114,16 +132,16 @@ export class Input extends React.Component {
     );
 
     if (confirmacaoApagaMensagem === true) {
-      this.removeMensagem(this.mensagem);
+      this.removeMensagem(this.state.mensagens.usuario);
     }
   };
 
   render() {
     const listaDeMensagens = this.state.mensagens.map((dado) => {
       return (
-        <p>
-          <TextoBold>{dado.usuario}:</TextoBold> {dado.mensagem}
-        </p>
+        <MensagemRecebida>
+          <TextoBold>{dado.usuario}</TextoBold> {dado.mensagem}
+        </MensagemRecebida>
       );
     });
 
@@ -144,7 +162,7 @@ export class Input extends React.Component {
             />
             <Botao onClick={this.adicionaMensagem}>Enviar</Botao>
           </DivMensagem>
-          <ListaMensagem onClick={this.confirmacaoRemoveMensagem}>
+          <ListaMensagem onDoubleClick={this.confirmacaoRemoveMensagem}>
             {listaDeMensagens}
           </ListaMensagem>
         </BoxMensagem>
