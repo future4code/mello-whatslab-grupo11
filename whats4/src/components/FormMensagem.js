@@ -13,7 +13,7 @@ const BoxMensagem = styled.div`
   height: 100vh;
   width: 45vw;
   border: 1px solid black;
-  background-color: grey;
+  background-color: rgb(229,201,213);
 `;
 
 const DivMensagem = styled.div`
@@ -29,12 +29,13 @@ const ListaMensagem = styled.div`
   align-items: flex-start;
   padding-left: 25px;
   padding-bottom: 25px;
-`;
+  `;
 
 const InputUsuario = styled.input`
   width: 6vw;
   height: 4vh;
   border-radius: 10px;
+  border: none;
 `;
 
 const InputMensagem = styled.input`
@@ -42,12 +43,15 @@ const InputMensagem = styled.input`
   height: 4vh;
   border-radius: 10px;
   margin: 2px;
+  border: none;
 `;
 
 const Botao = styled.button`
   width: 4vw;
   height: 5vh;
   border-radius: 10px;
+  font-weight: bold;
+  border: none;
 `;
 
 const TextoBold = styled.span`
