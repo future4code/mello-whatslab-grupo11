@@ -13,14 +13,14 @@ const BoxMensagem = styled.div`
   height: 100vh;
   width: 45vw;
   border: 1px solid black;
-  background-color: grey;
+  background-color: #e5ddd5;
 `;
 
 const DivMensagem = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
   justify-content: space-evenly;
+  align-items: flex-end;
+  padding-bottom: 10px;
 `;
 
 const ListaMensagem = styled.div`
@@ -32,34 +32,57 @@ const ListaMensagem = styled.div`
 `;
 
 const InputUsuario = styled.input`
-  width: 6vw;
-  height: 4vh;
-  border-radius: 10px;
+  height: 5vh;
+  width: 7vw;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+  font-size: 16px;
 `;
 
 const InputMensagem = styled.input`
-  width: 32vw;
-  height: 4vh;
-  border-radius: 10px;
-  margin: 2px;
+  width: 28vw;
+  height: 5vh;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+  font-size: 16px;
 `;
 
 const Botao = styled.button`
-  width: 4vw;
-  height: 5vh;
-  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 6vw;
+  height: 5.2vh;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
 `;
 
 const TextoBold = styled.span`
   font-weight: bold;
 `;
 
+const MensagemRecebida = styled.div`
+  text-align: left;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 7.5vh;
+  padding: 10px;
+  min-width: 7vw;
+  margin-bottom: 2vh;
+`;
+
 export class Input extends React.Component {
   state = {
     mensagens: [
       {
-        usuario: "João",
-        mensagem: "Bom dia!",
+        usuario: "",
+        mensagem: "",
       },
     ],
 
@@ -115,16 +138,17 @@ export class Input extends React.Component {
     );
 
     if (confirmacaoApagaMensagem === true) {
-      this.removeMensagem(this.mensagem);
+      this.removeMensagem(this.state.mensagens.usuario);
     }
   };
 
   render() {
     const listaDeMensagens = this.state.mensagens.map((dado) => {
       return (
-        <p>
-          <TextoBold>{dado.usuario}:</TextoBold> {dado.mensagem}
-        </p>
+        <MensagemRecebida>
+          <TextoBold>{dado.usuario}</TextoBold>
+          {dado.mensagem}
+        </MensagemRecebida>
       );
     });
 
@@ -145,7 +169,7 @@ export class Input extends React.Component {
             />
             <Botao onClick={this.adicionaMensagem}>Enviar</Botao>
           </DivMensagem>
-          <ListaMensagem onClick={this.confirmacaoRemoveMensagem}>
+          <ListaMensagem onDoubleClick={this.confirmacaoRemoveMensagem}>
             {listaDeMensagens}
           </ListaMensagem>
         </BoxMensagem>

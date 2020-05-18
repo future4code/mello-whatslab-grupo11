@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css'
 import FormMensagem from './components/FormMensagem';
 
 function App () {
